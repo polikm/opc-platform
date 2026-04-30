@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局基础样式 */
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --foreground: #0F172A;
+    --card: #FFFFFF;
+    --card-foreground: #0F172A;
+    --border: #E2E8F0;
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+    --primary: #2563EB;
+    --primary-foreground: #FFFFFF;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    --success: #22C55E;
+    --warning: #F59E0B;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* 自定义滚动条 */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E1 transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #CBD5E1;
+    border-radius: 3px;
+  }
+}
+
+/* 管理后台特定样式 */
+@layer components {
+  .admin-card {
+    @apply bg-white rounded-xl border border-[var(--border)] shadow-sm;
+  }
+
+  .admin-btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-lg font-medium text-sm
+           hover:bg-primary-700 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .admin-btn-secondary {
+    @apply bg-white text-gray-700 px-4 py-2 rounded-lg font-medium text-sm
+           border border-[var(--border)] hover:bg-gray-50 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .admin-btn-danger {
+    @apply bg-destructive text-white px-4 py-2 rounded-lg font-medium text-sm
+           hover:bg-red-600 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+  }
+
+  .admin-input {
+    @apply w-full px-3 py-2 rounded-lg border border-[var(--border)] bg-white
+           text-sm placeholder:text-gray-400
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500
+           transition-colors duration-200;
+  }
+
+  .admin-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .admin-badge-success {
+    @apply admin-badge bg-green-100 text-green-800;
+  }
+
+  .admin-badge-warning {
+    @apply admin-badge bg-yellow-100 text-yellow-800;
+  }
+
+  .admin-badge-danger {
+    @apply admin-badge bg-red-100 text-red-800;
+  }
+
+  .admin-badge-info {
+    @apply admin-badge bg-blue-100 text-blue-800;
+  }
+}

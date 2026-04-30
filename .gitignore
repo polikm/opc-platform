@@ -1,0 +1,38 @@
+node_modules/
+dist/
+.next/
+.output/
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+coverage/
+.turbo/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker volumes
+postgres_data/
+redis_data/
+minio_data/
+
+# OS
+Thumbs.db
+
+# Build
+*.tsbuildinfo

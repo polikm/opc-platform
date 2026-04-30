@@ -1,0 +1,29 @@
+{
+  "name": "@op/config",
+  "version": "0.1.0",
+  "description": "OPC平台共享配置（ESLint、Prettier等）",
+  "private": true,
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./eslint": "./eslint-config.js",
+    "./prettier": "./prettier-config.js"
+  },
+  "scripts": {
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0",
+    "prettier": ">=3.0.0"
+  }
+}

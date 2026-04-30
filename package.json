@@ -1,0 +1,27 @@
+{
+  "name": "opc-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OPC智能体系统 - 一人公司社区平台",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.4.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.0"
+  },
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": ">=18"
+  }
+}

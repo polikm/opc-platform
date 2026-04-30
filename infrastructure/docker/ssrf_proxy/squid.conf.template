@@ -1,0 +1,57 @@
+# ============================================================
+# Dify SSRF 代理 - Squid 配置模板
+# 参考: https://github.com/langgenius/dify/tree/main/docker/ssrf_proxy
+# ============================================================
+
+# ACL 定义
+acl SSL_ports port 443
+acl Safe_ports port 80          # http
+acl Safe_ports port 21          # ftp
+acl Safe_ports port 443         # https
+acl Safe_ports port 70          # gopher
+acl Safe_ports port 210         # wais
+acl Safe_ports port 1025-65535  # unregistered ports
+acl Safe_ports port 280         # http-mgmt
+acl Safe_ports port 488         # gss-http
+acl Safe_ports port 591         # filemaker
+acl Safe_ports port 777         # multiling http
+acl CONNECT method CONNECT
+
+# 拒绝非安全端口
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+
+# 允许来自 Docker 内部网络的访问
+http_access allow localhost
+http_access allow to_localhost
+
+# 拒绝所有其他访问
+http_access deny all
+
+# 端口配置
+http_port {{ .Env.HTTP_PORT }}
+# 反向代理端口（用于沙箱）
+http_port {{ .Env.REVERSE_PROXY_PORT }} accel vhost
+
+# 缓存配置（SSRF代理不需要缓存）
+cache deny all
+
+# 日志配置
+access_log none
+cache_log /dev/null
+
+# 反向代理到沙箱服务
+cache_peer {{ .Env.SANDBOX_HOST }} parent {{ .Env.SANDBOX_PORT }} 0 no-query originserver
+
+# 反向代理ACL
+acl sandbox dstdomain 127.0.0.1
+http_access allow sandbox
+cache_peer_access {{ .Env.SANDBOX_HOST }} allow sandbox
+
+# 核心转储目录
+coredump_dir {{ .Env.COREDUMP_DIR }}
+
+# 刷新规则（禁用缓存）
+refresh_pattern ^ftp:           0       20%     2280
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern .               0       20%     4320

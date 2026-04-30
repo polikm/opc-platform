@@ -1,0 +1,24 @@
+# OPC AI Service - 依赖列表
+# Web框架
+fastapi>=0.115.0,<1.0.0
+uvicorn[standard]>=0.32.0,<1.0.0
+sse-starlette>=2.1.0,<3.0.0
+python-multipart>=0.0.18,<1.0.0
+# LangChain生态
+langchain>=0.3.0,<1.0.0
+langchain-openai>=0.2.0,<1.0.0
+langchain-community>=0.3.0,<1.0.0
+langgraph>=0.2.0,<1.0.0
+# 异步HTTP客户端（用于调用Dify API）
+httpx>=0.27.0,<1.0.0
+# 数据校验与配置
+pydantic>=2.9.0,<3.0.0
+pydantic-settings>=2.6.0,<3.0.0
+# 数据库
+sqlalchemy[asyncio]>=2.0.35,<3.0.0
+asyncpg>=0.30.0,<1.0.0
+redis[hiredis]>=5.2.0,<6.0.0
+# 认证
+python-jose[cryptography]>=3.3.0,<4.0.0
+# Token计数
+tiktoken>=0.8.0,<1.0.0
