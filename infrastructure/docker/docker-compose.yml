@@ -223,12 +223,8 @@ services:
       NEXT_PUBLIC_DIFY_URL: ${NEXT_PUBLIC_DIFY_URL:-http://localhost:3002}
     depends_on:
       - api-gateway
-    volumes:
-      - ../../apps/web:/app
-      - /app/node_modules
-      - /app/.next
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3001 || exit 1"]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3001 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
